@@ -1,12 +1,6 @@
 #include "BinaryTree.h"
 #include "raylib.h"
 
-
-BinaryTree::BinaryTree()
-{
-}
-
-
 BinaryTree::~BinaryTree()
 {
 }
@@ -19,21 +13,55 @@ bool BinaryTree::isEmpty() const
 
 void BinaryTree::insert(int a_nValue)
 {
-	//If the tree is empty, the value is inserted at the root
+	//If the tree is empty, the value is inserted at the root of  the tree
+	if (m_pRoot == nullptr)
+	{
+		m_pRoot->setData(a_nValue);
+	}
 	//Set the current node to the root
-	//White the current node is not null
+	TreeNode* currentNode = m_pRoot;
+	TreeNode* parent;
+	//While the current node is not null
+	while (currentNode != nullptr)
+	{
 		//If the value to be inserted is less than the value in the current node
 			//Set the curreent node to the left child and continue
+		if (a_nValue < currentNode->getData)
+		{
+			//assign parent root			
+			parent = currentNode;
+			//assign current node
+			currentNode = currentNode->getLeft;
+		}
 		//If the value to be inserted is greater than the current node
 			//Set the current node to the right child and continue
+		else if (a_nValue > currentNode->getData)
+		{
+			parent = currentNode;
+			currentNode = currentNode->getRight;
+		}
 		//If the value to be inserted is the same as the value in the current node
 			//The value is already in the tree, so exit
+		else if (a_nValue == currentNode->getData)
+		{
+			break;
+		}
+	}				
 	//End while
 
 	//Get the parent of the current node(before it was set to null)
+	
 	//If value to be inserted is less than parent
 		//Insert value as left child node
+	if (a_nValue < parent->getData)
+	{
+		parent->getLeft = a_nValue;
+	}
 	//Otherwise insert value as right child node
+	else
+	{
+		parent->getRight = a_nValue;
+	}
 }
 
 void BinaryTree::remove(int a_nValue)

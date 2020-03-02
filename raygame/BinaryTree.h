@@ -4,7 +4,7 @@
 class BinaryTree
 {
 public:
-	BinaryTree();
+	BinaryTree() { m_pRoot = nullptr; }
 	~BinaryTree();
 
 	bool isEmpty() const;
@@ -20,7 +20,7 @@ private:
 
 	void draw(TreeNode* pNode, int x, int y, int horizontalSpacing, TreeNode* selected = nullptr);
 
-	//The root node ofnthe tree
+	//The root node of the tree
 	TreeNode* m_pRoot;
 };
 
