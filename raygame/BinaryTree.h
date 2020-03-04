@@ -21,6 +21,6 @@ private:
 	void draw(TreeNode* pNode, int x, int y, int horizontalSpacing, TreeNode* selected = nullptr);
 
 	//The root node of the tree
-	TreeNode* m_pRoot;
+	TreeNode* m_pRoot;	
 };
 
