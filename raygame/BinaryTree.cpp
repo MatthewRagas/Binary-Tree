@@ -104,13 +104,18 @@ void BinaryTree::remove(int a_nValue)
 
 TreeNode * BinaryTree::find(int a_nValue)
 {
-	//retu nnode with a_nValue
+	//return node with a_nValue
+
+	if (a_nValue == m_pRoot->getData())
+	{
+		return m_pRoot;
+	}
 	return nullptr;
 }
 
 void BinaryTree::draw(TreeNode* selected)
 {
-	draw(m_pRoot, 640, 680, 640, selected);
+	draw(m_pRoot, 640, 170, 640, selected);
 }
 
 bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode ** ppOutParent)
@@ -140,17 +145,17 @@ void BinaryTree::draw(TreeNode* pNode, int x, int y, int horizontalSpacing, Tree
 		if (pNode->hasLeft())
 		{
 			//draw a line to the left node
-			DrawLine(x, y, x - horizontalSpacing, y - 80, RED);
+			DrawLine(x, y, x - horizontalSpacing, y + 80, RED);
 			//draw the left node
-			draw(pNode->getLeft(), x - horizontalSpacing, y - 80, horizontalSpacing, selected);
+			draw(pNode->getLeft(), x - horizontalSpacing, y + 80, horizontalSpacing, selected);
 		}
 		//check to see if right node exists
 		if (pNode->hasRight())
 		{
 			//draw line to the right node
-			DrawLine(x, y, x + horizontalSpacing, y - 80, RED);
+			DrawLine(x, y, x + horizontalSpacing, y + 80, RED);
 			//draw the right node
-			draw(pNode->getLeft(), x + horizontalSpacing, y - 80, horizontalSpacing, selected);
+			draw(pNode->getRight(), x + horizontalSpacing, y + 80, horizontalSpacing, selected);
 		}
 		pNode->draw(x, y, (selected == pNode));
 	}
