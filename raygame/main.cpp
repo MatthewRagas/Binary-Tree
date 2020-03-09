@@ -31,7 +31,7 @@ int main()
 	tree.insert(4);
 	tree.insert(12);
 	tree.insert(11);
-	TreeNode* node = tree.find(7);	
+	TreeNode* node = tree.find(8);	
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop

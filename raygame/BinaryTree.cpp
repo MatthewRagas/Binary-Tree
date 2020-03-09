@@ -92,7 +92,7 @@ void BinaryTree::remove(int a_nValue)
 				//Set the left child of the parent to the right child of the minimum node
 			//If you are deleting the parent's right node
 				//Set the right child of the parent to the minimum node's right child
-
+	
 	//If  the current node has no right branch
 		//If we are deleting the parent's left child
 			//Set the left child of the parent to the left child of the current node
@@ -104,31 +104,52 @@ void BinaryTree::remove(int a_nValue)
 
 TreeNode * BinaryTree::find(int a_nValue)
 {
-	//return node with a_nValue
+	//return node with a_nValue	
 
-	if (a_nValue == m_pRoot->getData())
+	TreeNode* currentNode = m_pRoot;
+	TreeNode* parent = nullptr;
+
+	if (findNode(a_nValue, &currentNode, &parent))
 	{
-		return m_pRoot;
+		currentNode
+		return currentNode;
 	}
 	return nullptr;
 }
 
 void BinaryTree::draw(TreeNode* selected)
 {
-	draw(m_pRoot, 640, 170, 640, selected);
+	draw(m_pRoot, 640, 170, 420, selected);
 }
 
 bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode ** ppOutParent)
 {
 	//Set the current node to the root
+	TreeNode* currentNode = m_pRoot;
+	TreeNode* parent;
 	//While the current node is not null
+	while (currentNode != nullptr)
+	{
 		//If the search value equals the current node and its parent
 			//Return the current node and its parent
-		//Otherwise
-			//If the search value is less tham the current node
+		if (a_nSearchValue == currentNode->getData())
+		{
+			return true;
+		}
+		//If the search value is less tham the current node
 				//Set the current node to the left child
-			//Otherwise set the current node to the right child
+		else if(a_nSearchValue < currentNode->getData())
+		{
+			currentNode = currentNode->getLeft();
+		}
+		//Otherwise set the current node to the right child
+		else
+		{
+			currentNode = currentNode->getRight();
+		}
+	}
 	//End while
+
 	//If the loop exits, then a match was not found, so return false
 	return false;
 }
