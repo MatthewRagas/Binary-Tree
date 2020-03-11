@@ -78,40 +78,90 @@ void BinaryTree::insert(int a_nValue)
 void BinaryTree::remove(int a_nValue)
 {
 	//Find the value in the tree, obtaining a pointer to the node and its parent
+	TreeNode* currentNode = nullptr;
+	TreeNode* parent = nullptr;		
+	if (!findNode(a_nValue, &currentNode, &parent))
+	{
+		return;
+	}
+
 	//If the current node has a right branch, then
 	//if (m_pRoot->getRight != nullptr)
 	//{
 		//Find the minimum value in the right branch by iterating down the left branch of the 
-			//Current node's right child until there are no more left branch nodes
-		
+			//Current node's right child until there are no more left branch nodes		
 	//}
-		
+	if (currentNode->getRight() != nullptr)
+	{
+		TreeNode* minimum = nullptr;
+		parent = currentNode;
+		minimum = currentNode->getRight();
+
+		while (minimum->getLeft() != nullptr)
+		{			
+			parent = minimum;
+			minimum = minimum->getLeft();
+		}
 		//Copy the value from this minimum node to the current node
-		//Find the minimum node's parent node (the parent of the node you are deleting)
-			//If you are deleting the parent's left node
-				//Set the left child of the parent to the right child of the minimum node
-			//If you are deleting the parent's right node
-				//Set the right child of the parent to the minimum node's right child
-	
-	//If  the current node has no right branch
-		//If we are deleting the parent's left child
+		currentNode->setData(minimum->getData());
+		//If we are deleting the parent's left node
+		if (minimum == parent->getLeft())
+		{
+			//Set the left child of the parent to the right child of the minimum node
+			parent->setLeft(minimum->getRight());
+			//Delete the node
+			delete minimum;
+		}
+
+		//If we are deleting the parent's right node
+		else if (minimum == parent->getRight())
+		{
+			//Set the right child of the parent to the right child of the minimum node
+			parent->setRight(minimum->getRight());
+			//Delete the node
+			delete minimum;
+		}
+	}					
+	//If the current node has no right branch
+	else if(currentNode->getRight() == nullptr)
+	{	
+			//If we are deleting the parent's left child
+		if (currentNode == parent->getLeft())
+		{
 			//Set the left child of the parent to the left child of the current node
-		//If you are deleting the parent's right node
+			parent->setLeft(currentNode->getLeft());
+			//Delete the node
+			delete currentNode;
+		}
+		//If we are deleting the parent's right child
+		else if (currentNode == parent->getRight())
+		{
 			//Set the right child of the parent to the left child of the current node
+			parent->setRight(currentNode->getLeft());
+			//Delete the node
+			delete currentNode;
+		}
 		//If we are deleting the root
+		else if(a_nValue == m_pRoot->getData())
+		{			
 			//The root becomes the left child of the current node
+			m_pRoot = currentNode->getLeft();
+			//Delete the node
+			delete currentNode;
+		}
+	}
 }
 
 TreeNode * BinaryTree::find(int a_nValue)
 {
 	//return node with a_nValue	
 
-	TreeNode* currentNode = m_pRoot;
+	TreeNode* currentNode = nullptr;
 	TreeNode* parent = nullptr;
 
 	if (findNode(a_nValue, &currentNode, &parent))
-	{
-		currentNode
+	{		
+		
 		return currentNode;
 	}
 	return nullptr;
@@ -126,7 +176,7 @@ bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode **
 {
 	//Set the current node to the root
 	TreeNode* currentNode = m_pRoot;
-	TreeNode* parent;
+	TreeNode* parent = nullptr;
 	//While the current node is not null
 	while (currentNode != nullptr)
 	{
@@ -134,17 +184,21 @@ bool BinaryTree::findNode(int a_nSearchValue, TreeNode ** ppOutNode, TreeNode **
 			//Return the current node and its parent
 		if (a_nSearchValue == currentNode->getData())
 		{
+			*ppOutParent = parent;
+			*ppOutNode = currentNode;
 			return true;
 		}
 		//If the search value is less tham the current node
 				//Set the current node to the left child
 		else if(a_nSearchValue < currentNode->getData())
 		{
+			parent = currentNode;
 			currentNode = currentNode->getLeft();
 		}
 		//Otherwise set the current node to the right child
 		else
 		{
+			parent = currentNode;
 			currentNode = currentNode->getRight();
 		}
 	}

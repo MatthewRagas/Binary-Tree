@@ -26,12 +26,16 @@ int main()
 
 	BinaryTree tree;
 
-	tree.insert(7);
-	tree.insert(8);
-	tree.insert(4);
-	tree.insert(12);
-	tree.insert(11);
-	TreeNode* node = tree.find(8);	
+	tree.insert(568);
+	tree.insert(853);
+	tree.insert(432);
+	tree.insert(121);
+	tree.insert(917);
+	tree.insert(700);
+	tree.insert(750);
+	tree.insert(650);
+	TreeNode* node = tree.find(121);
+	tree.remove(568);
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
