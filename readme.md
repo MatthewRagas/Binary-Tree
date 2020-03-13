@@ -1,36 +1,108 @@
-# raygame - sample project
+Binary-Tree 
+Matthew Ragas
+s178023
+Binary tree documentation
 
-This is a sample C++ project setup with [raylib][raylib] for Visual Studio 2017.
-Raylib is a simple game programming framework that is designed to be friendly to
-beginners. It is created by [Ramon Santamaria (@raysan5)][raysan].
+##I. Requirements
 
-It is primarily intended for use by students in the Game Programming course at
-the Seattle Campus of the Academy of Interactive Entertainment.
+1. Description of Problem
+  -**Name**: Binary Tree
+  
+  -**Problem Statement**:
+  Creation of a binary tree in C++ language
+  
+  -**Problem Specifications**: 
+  Binary tree must include functions for inserting a new value, finding a value, and removing a value from the tree.
+ 
+2. Output Information
+-The program displays numbers in  abinary tree format to the user.
+  
+  
+## II. Design
 
-[raylib]:https://github.com/raysan5/raylib
-[raysan]:https://github.com/raysan5
+1. _systemArchitecture_
 
-## Building
+Game Loop
 
-This project supports by **Visual Studio 2017** or newer.
+While window should not close, continue to draw the binary tree.
 
-Clone the repository and open the solution in Visual Studio. Both the solution
-and project should already be configured and ready to start working with. To
-test this, build and run the provided sample project.
+2. ###Object Information
 
-![A screenshot of the included sample project](.github/raygame.png)
+  **File**:TreeNode.h
+  
+  Description: Class used to define the node of the tree
 
-The sample project that is provided is the [basic window example][basicexample]
-from raylib. Further examples can be found in its [repository][rayexample] or
-on the [website][rayexamplesite].
-
-You can review the [cheatsheet][raycheat] for the full range of functions made
-available through raylib.
-
-[basicexample]:https://github.com/raysan5/raylib/blob/master/examples/core/core_basic_window.cpp
-[rayexample]:https://github.com/raysan5/raylib/tree/master/examples
-[rayexamplesite]:https://www.raylib.com/examples.html
-[raycheat]:https://www.raylib.com/cheatsheet/cheatsheet.html
+  **Attributes**
+  
+    Name: m_value
+    Description: variable used to hold the value of a node
+    Type: int
+    Protection Level: private
+    
+    Name: m_left
+    Description: pointer variable used to hold the value of the node's children
+    Type: TreeNode*
+    Protection Level: Private
+    
+    
+    Name: m_right
+    Description: pointer variable used to hold the value of the node's children
+    Type: TreeNode*
+    Protection Level: Private
+    
+  **Operations**
+  
+    Name: TreeNode
+    Description: Default constructor for TreeNode
+    Paramaters: int value
+    Protection Level: public
+    
+    Name: ~TreeNode
+    Description: Deconstructor for TreeNode
+    Protection Level: public
+    
+    Name: hasLeft
+    Description: Returns wether there is a left child
+    Type: bool
+    Protection Level: public
+    
+    Name: hasRight
+    Description: Returns wether there is a right child
+    Type: bool
+    Protection Level: public
+    
+    Name: getData
+    Description: Returns the value of the node
+    Type: int
+    Protection Level: public    
+    
+    Name: getLeft
+    Description: Returns the value of the left child
+    Type: TreeNode*
+    Protection Level: public
+    
+    Name: getRight
+    Description: Returns the value of the right child
+    Type: TreeNode*
+    Protection Level: public
+    
+    Name: setData
+    Description: set the value of the node
+    Type: void
+    Paramaters: int value
+    Protection Level: public
+    
+    name: setLeft
+    Description: set the value of the left child
+    Type: void
+    Paramaters: TreeNode* node
+    protection Level: public
+    
+    name: setRight
+    Description: set the value of the right child
+    Type: void
+    Paramaters: TreeNode* node
+    protection Level: public
 
 ## License
 
